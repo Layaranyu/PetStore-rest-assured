@@ -31,5 +31,43 @@ public class Pet {
                 .log().all()
                 .statusCode(200)
         ;
+
+    }
+
+    @Test
+    public void GetPet() throws IOException {
+        given()
+                .contentType("application/json")
+                .log().all()
+        .when()
+                .get(uri + "/" + 1)
+        .then()
+                .log().all()
+                .statusCode(200);
+    }
+
+    @Test
+    public void PutPet() throws IOException {
+        String jsonBody = lerJson("db/edicao.json");
+       given()
+       .contentType("application/json")
+               .log().all()
+               .body(jsonBody)
+       .when()
+               .put(uri)
+       .then()
+               .log().all()
+               .statusCode(200);
+    }
+    @Test
+    public void DeletePet() throws IOException {
+        given()
+        .contentType("application/json")
+                .log().all()
+        .when()
+                .delete(uri + "/" + 1)
+        .then()
+                .log().all()
+                .statusCode(200);
     }
 };
